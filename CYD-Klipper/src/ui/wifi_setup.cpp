@@ -111,6 +111,13 @@ void wifi_init_inner(){
     lv_obj_clean(lv_scr_act());
 
     if (global_config.wifi_configured){
+        IPAddress ip(192, 168, 2, 198);
+        IPAddress dns(8, 8, 8, 8);
+        IPAddress gateway(192, 168, 2, 1);
+        IPAddress subnet(255, 255, 255, 0);
+
+        WiFi.config(ip, gateway, subnet, dns);
+
         if (global_config.wifi_password[0] == '\0')
         {
             WiFi.begin(global_config.wifi_SSID);
